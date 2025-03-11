@@ -4,9 +4,9 @@ type Product struct {
 }
 
 type Repository interface {
-	FindAll() []Product
+	FindAll() ([]Product, error)
 }
 
 type Service interface {
-	FindAll() []Product
+	FindAll() ([]Product, error)
 }

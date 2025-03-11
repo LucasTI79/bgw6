@@ -7,6 +7,6 @@ var products []domain.Product
 type memoryRepository struct {
 }
 
-func (r memoryRepository) FindAll() []domain.Product {
-	return products
+func (r memoryRepository) FindAll() ([]domain.Product, error) {
+	return products, nil
 }

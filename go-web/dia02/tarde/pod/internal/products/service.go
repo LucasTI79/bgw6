@@ -6,10 +6,10 @@ type service struct {
 	repository domain.Repository
 }
 
-func (s service) FindAll() []domain.Product {
+func (s service) FindAll() ([]domain.Product, error) {
 	return s.repository.FindAll()
 }
 
-func NewService() domain.Service {
-	return service{}
+func NewService(repo domain.Repository) domain.Service {
+	return service{repo}
 }
