@@ -1,3 +1,4 @@
+```go
 package main
 
 import (
@@ -22,6 +23,7 @@ type ControllerProducts struct {
 }
 
 // RequestBodyProduct estrutura para o corpo da solicitação
+// (DTO) -> Data Transfer Object 
 type RequestBodyProduct struct {
 	Name     string  `json:"name"`
 	Type     string  `json:"type"`
@@ -102,3 +104,5 @@ func main() {
 
 	http.ListenAndServe(":8080", rt)
 }
+
+```

@@ -1,0 +1,4 @@
+github.com/bootcamp-go/web v1.0.0 h1:uXcEWwfI0YYq9PldzJvPIf4RSXtwt6gLnQ7Vtxb4gSo=
+github.com/bootcamp-go/web v1.0.0/go.mod h1:NswrU/78aW7T+bQlrvgmu6eM9p4TxltZfZ5VKgTIW9s=
+github.com/go-chi/chi/v5 v5.2.1 h1:KOIHODQj58PmL80G2Eak4WdvUzjSJSm0vG72crDCqb8=
+github.com/go-chi/chi/v5 v5.2.1/go.mod h1:L2yAIGWB3H+phAw1NxKwWM+7eUH/lU8pOMm5hHcoops=
