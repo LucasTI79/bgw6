@@ -10,6 +10,10 @@ func (s service) Get() ([]domain.Product, error) {
 	return s.repository.Get()
 }
 
+func (s service) GetByID(productId int) (*domain.Product, error) {
+	return s.repository.GetByID(productId)
+}
+
 func (s service) Update(p *domain.Product) error {
 	return s.repository.Update(p)
 }

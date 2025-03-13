@@ -15,6 +15,7 @@ func buildProductsRoutes() http.Handler {
 	handler := handlers.NewProductHandler(service)
 
 	r.Get("/", handler.FindAll())
+	r.Get("/{productId}", handler.Show())
 	r.Post("/", handler.Create())
 	r.Put("/{productId}", handler.Update())
 	r.Delete("/{productId}", handler.Delete())

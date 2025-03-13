@@ -12,7 +12,7 @@ type Repository interface {
 	// Get returns all the products
 	Get() ([]Product, error)
 	// // GetByID returns a product by id
-	// GetByID(id int) (*Product, error)
+	GetByID(productId int) (*Product, error)
 	// // Save saves a product
 	Create(p *Product) error
 	Update(p *Product) error
@@ -22,7 +22,7 @@ type Repository interface {
 type Service interface {
 	Get() ([]Product, error)
 	// // GetByID returns a product by id
-	// GetByID(id int) (*Product, error)
+	GetByID(productId int) (*Product, error)
 	// // Save saves a product
 	Create(p *Product) error
 	Update(p *Product) error

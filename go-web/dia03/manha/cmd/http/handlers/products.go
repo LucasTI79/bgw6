@@ -38,6 +38,41 @@ func (ph productHandler) FindAll() http.HandlerFunc {
 	}
 }
 
+func (ph productHandler) Show() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		id, err := strconv.Atoi(chi.URLParam(r, "productId"))
+		if err != nil {
+			code := http.StatusBadRequest
+			body := map[string]any{"message": "invalid id", "data": nil}
+
+			response.JSON(w, code, body)
+			return
+		}
+
+		product, err := ph.service.GetByID(id)
+
+		if err != nil {
+			var code int
+			var body map[string]any
+			switch {
+			case errors.Is(err, domain.ErrResourceNotFound):
+				code = http.StatusNotFound
+				body = map[string]any{"message": "product not found", "data": nil}
+			default:
+				code = http.StatusInternalServerError
+				body = map[string]any{"message": "internal server error", "data": nil}
+			}
+			response.JSON(w, code, body)
+			return
+		}
+
+		code := http.StatusOK
+		body := map[string]any{"message": "get product", "data": product}
+
+		response.JSON(w, code, body)
+	}
+}
+
 type RequestBodyProduct struct {
 	Name     string  `json:"name"`
 	Type     string  `json:"type"`
@@ -157,7 +192,7 @@ func (ph productHandler) Delete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		// request
-		id, err := strconv.Atoi(chi.URLParam(r, "id"))
+		id, err := strconv.Atoi(chi.URLParam(r, "productId"))
 		if err != nil {
 			code := http.StatusBadRequest
 			body := map[string]any{"message": "invalid id", "data": nil}
@@ -209,9 +244,9 @@ func NewProductHandler(service domain.Service) productHandler {
  401 - Unauthorized
  403 - Forbideen
  404 - Not Found
- 429 - Conflict
+ 409 - Conflict
+ 429 - Too many request
  422 - Unprocessable Entity
- 459 - Too many request
 
 5xx - erros do servidor
  500 - Internal Server Error

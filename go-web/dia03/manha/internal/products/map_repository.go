@@ -40,6 +40,18 @@ func (r mapRepository) Get() ([]domain.Product, error) {
 	return pr, nil
 }
 
+func (r mapRepository) GetByID(productId int) (*domain.Product, error) {
+	product, ok := r.products[productId]
+	if !ok {
+		return nil, domain.ErrResourceNotFound
+	}
+
+	domainProduct := product.ToDomain()
+	domainProduct.Id = productId
+
+	return &domainProduct, nil
+}
+
 func (r *mapRepository) Update(p *domain.Product) (err error) {
 	attr := ProductAttributes{
 		Name:     p.Name,
