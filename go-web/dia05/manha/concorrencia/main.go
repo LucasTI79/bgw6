@@ -8,11 +8,11 @@ import (
 func main() {
 	requests := make(chan int)
 
-	for i := 0; i < 1_000; i++ {
+	for i := range 1_000 {
 		go processRequest(i, &requests)
 	}
 
-	for i := 0; i < 100_000; i++ {
+	for i := range 100_000 {
 		requests <- i
 	}
 }
