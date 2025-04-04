@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS products (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  price DECIMAL(12,2),
+  quantity INT DEFAULT 0,
+  type VARCHAR(20)
+);
